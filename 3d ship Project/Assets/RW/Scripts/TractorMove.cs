@@ -2,17 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum TractorState { Move, Stop };
+
+
+
+
+
+
 public class TractorMove : MonoBehaviour
 {
     [SerializeField] private float speed;
     private float direction;
-    private bool mooving;
- 
+   // private bool mooving;
 
+    TractorState tractorState = TractorState.Stop;
 
     void Update()
     {
-        if( mooving == true)
+        if( tractorState == TractorState.Move)
         {
             if (((transform.position.x >= -22f) && (direction == -1f))  || ((transform.position.x <= 22f) && (direction == 1f)))
                
@@ -33,19 +41,22 @@ public class TractorMove : MonoBehaviour
     {
         
         direction = 1f;
-        mooving = true;
+        //mooving = true;
+        tractorState = TractorState.Move;
     }
     public void MoveLeft()
     {
         
         direction = -1f;
-        mooving = true;
+        // mooving = true;
+        tractorState = TractorState.Move;
     }
     public void StopMove()
     {
-        
+
         //direction = 0f;
-        mooving = false;
+        //mooving = false;
+        tractorState = TractorState.Stop;
     }
 
 }
